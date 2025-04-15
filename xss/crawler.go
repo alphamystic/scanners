@@ -13,6 +13,7 @@ import (
 	"encoding/json"
 
 	"golang.org/x/net/html"
+	"github.com/alphamystic/odin/lib/utils"
 )
 // Structs
 type Target struct {
@@ -112,7 +113,7 @@ func crawl(link string, ctxKey string) {
 	visited[link] = true
 	mu.Unlock()
 
-	fmt.Printf("[+] Crawling: %s\n", link)
+	utils.PrintTextInASpecificColor("blue",fmt.Sprintf("Crawling: %s\n", link))
 	clientCtx := clients[ctxKey]
 	resp, err := clientCtx.Client.Get(link)
 	if err != nil {
